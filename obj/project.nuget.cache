@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "THbN/HWEjoHx0YbDE1meKFRHKiDCX08tQ0JVqwx5Yju7JO+g7Kn54jTl3aB3sVLEuUbYSJidH8y75GG45hJPRg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lucre\\OneDrive\\Bureau\\Zharbic\\Zharbic\\Zharbic.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lucre\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.25\\microsoft.windowsdesktop.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\lucre\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.25\\microsoft.netcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\lucre\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.25\\microsoft.aspnetcore.app.ref.6.0.25.nupkg.sha512",
+    "C:\\Users\\lucre\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.25\\microsoft.netcore.app.host.win-x64.6.0.25.nupkg.sha512"
+  ],
+  "logs": []
+}
