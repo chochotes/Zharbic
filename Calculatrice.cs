@@ -1,14 +1,13 @@
 using System;
 
-class calculatrice
+static class Calculator
 {
-    static void Main()
+    static void Calcul(string expression)
     {
         try
         {
-            string expression = "2 3 5 + ";
-            int result = EvaluerExpression(expression);
-            Console.WriteLine($"Résultat : {result}");
+            int resultat = EvaluerCalcul(expression);
+            Console.WriteLine($"Résultat : {resultat}");
         }
         catch (Exception ex)
         {
@@ -16,50 +15,66 @@ class calculatrice
         }
     }
 
-    static int EvaluerExpression(string expression)
+private static int EvaluerCalcul(string expression)
+{
+    string[] elements = expression.Split(' ');
+    Stack<int> stack = new Stack<int>();
+
+    foreach (string element in elements)
     {
-        string[] elements = expression.Split(' ');
-        Stack<int> stack = new Stack<int>();
-
-        foreach (string element in elements)
+        if (int.TryParse(element, out int nombre))
         {
-            if (int.TryParse(element, out int nombre))
-            {
-                stack.Push(nombre);
-            }
-            else
-            {
-                if (stack.Count < 2)
-                    throw new InvalidOperationException("Erreur de syntaxe : opération impossible");
-
-                int operand2 = stack.Pop();
-                int operand1 = stack.Pop();
-
-                switch (element)
-                {
-                    case "+":
-                        stack.Push(operand1 + operand2);
-                        break;
-                    case "-":
-                        stack.Push(operand1 - operand2);
-                        break;
-                    case "":
-                        stack.Push(operand1 * operand2);
-                        break;
-                    case "/":
-                        if (operand2 == 0)
-                            throw new InvalidOperationException("Erreur : division par zéro");
-                        stack.Push(operand1 / operand2);
-                        break;
-                    default:
-                        throw new InvalidOperationException($"Erreur : opérateur inconnu '{element}'");
-                }
-            }
+            stack.Push(nombre);
         }
-
-        if (stack.Count != 1)
-            throw new InvalidOperationException("Erreur de syntaxe : opération impossible");
-
-        return stack.Pop();
+        else
+        {
+            EvaluerOperateur(element, stack);
+        }
     }
+
+    VerifierResultatFinal(stack);
+
+    return stack.Pop();
+}
+
+private static void EvaluerOperateur(string operateur, Stack<int> stack)
+{
+    if (stack.Count < 2)
+        throw new InvalidOperationException("Erreur de syntaxe : opération impossible");
+
+    int operand2 = stack.Pop();
+    int operand1 = stack.Pop();
+
+    switch (operateur)
+    {
+        case "+":
+            stack.Push(operand1 + operand2);
+            break;
+        case "-":
+            stack.Push(operand1 - operand2);
+            break;
+        case "*":
+            stack.Push(operand1 * operand2);
+            break;
+        case "/":
+            EvaluerDivision(operand2, stack, operand1);
+            break;
+        default:
+            throw new InvalidOperationException($"Erreur : opérateur inconnu '{operateur}'");
+    }
+}
+
+private static void EvaluerDivision(int operand2, Stack<int> stack, int operand1)
+{
+    if (operand2 == 0)
+        throw new InvalidOperationException("Erreur : division par zéro");
+
+    stack.Push(operand1 / operand2);
+}
+
+private static void VerifierResultatFinal(Stack<int> stack)
+{
+    if (stack.Count != 1)
+        throw new InvalidOperationException("Erreur de syntaxe : opération impossible");
+}
 }
