@@ -23,7 +23,8 @@ namespace CalculatorApp
                         Console.WriteLine("Entrez une expression mathématique (par exemple, '2 + 3 * 4') : ");
                         string? expression = Console.ReadLine();
 
-                        // Check for null or use null-forgiving operator depending on your needs
+
+                        // Check if expression is null before using it
                         if (expression != null)
                         {
                             Calculator.Calcul(expression);
