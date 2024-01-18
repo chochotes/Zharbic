@@ -1,6 +1,6 @@
 using System;
 
-class Program
+class calculatrice
 {
     static void Main()
     {
@@ -8,7 +8,7 @@ class Program
         {
             string expression = "2 3 5 + ";
             int result = EvaluerExpression(expression);
-            Console.WriteLine($"Résultat : {result}");
+            Console.WriteLine($"RÃ©sultat : {result}");
         }
         catch (Exception ex)
         {
@@ -30,7 +30,7 @@ class Program
             else
             {
                 if (stack.Count < 2)
-                    throw new InvalidOperationException("Erreur de syntaxe : opération impossible");
+                    throw new InvalidOperationException("Erreur de syntaxe : opÃ©ration impossible");
 
                 int operand2 = stack.Pop();
                 int operand1 = stack.Pop();
@@ -48,17 +48,17 @@ class Program
                         break;
                     case "/":
                         if (operand2 == 0)
-                            throw new InvalidOperationException("Erreur : division par zéro");
+                            throw new InvalidOperationException("Erreur : division par zÃ©ro");
                         stack.Push(operand1 / operand2);
                         break;
                     default:
-                        throw new InvalidOperationException($"Erreur : opérateur inconnu '{element}'");
+                        throw new InvalidOperationException($"Erreur : opÃ©rateur inconnu '{element}'");
                 }
             }
         }
 
         if (stack.Count != 1)
-            throw new InvalidOperationException("Erreur de syntaxe : opération impossible");
+            throw new InvalidOperationException("Erreur de syntaxe : opÃ©ration impossible");
 
         return stack.Pop();
     }
